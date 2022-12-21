@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /market-core
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/internet_shop
+    username: postgres
+    password: 123
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+integrations:
+  cart-service:
+    url: http://localhost:8081/market-cart/
+    connect-timeout: 5000
+    read-timeout: 10000
+    write-timeout: 5000
+
+

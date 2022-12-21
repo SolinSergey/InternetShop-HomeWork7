@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
+<head>
+  <title>Ввод данных нового продукта</title>
+</head>
+
+<h1>Введите данные нового продукта</h1>
+
+<body>
+<form th:action="@{/product/processForm}" th:object="${product}" method="post">
+  <table>
+    <tr>
+      <div class='is-node custom-form'>
+      <td><label>Название продукта: </label></td><td><input type="text" th:field="*{title}"/></td>
+      </div>
+    </tr>
+    <tr>
+      <div class='is-node custom-form'>
+      <td><label>Цена: </label></td><td><input type="text" th:field="*{price}"/></td>
+      </div>
+    </tr>
+    <tr>
+    <td><input name="submit" type="submit" value="submit" /></td>
+    </tr>
+
+  </table>
+
+</form>
+</body>
+</html>

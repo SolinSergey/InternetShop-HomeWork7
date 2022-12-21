@@ -1,0 +1,46 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:8888"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+            allowedHeaders: "*"
+      routes:
+        - id: core-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/core/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/market-core
+            - JwtAuthFilter
+        - id: cart-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/cart/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/market-cart
+            - JwtAuthFilter
+        - id: auth-service
+          uri: http://localhost:7070
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/market-auth
+            - JwtAuthFilter
+jwt:
+  secret: fnmlaskfnaljkfhnalkfbnalkjfnbaklfnaklfnalksnfasklfnalskfn
+
+
